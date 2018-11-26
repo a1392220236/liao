@@ -65,7 +65,7 @@ www  WEB部署目录（或者子目录）
 1. 首先克隆下载应用项目仓库（或者直接下载最新[发布版本包](https://github.com/tingyuu/tplay/releases)）
     
     ```bash
-    git clone https://github.com/tingyuu/tplay.git
+    git clone https://github.com/a1392220236/liao.git
     ```
 2. 然后切换到`tplay`目录下面，再使用`composer`自动安装更新依赖库
 
