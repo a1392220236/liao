@@ -9,7 +9,13 @@
 namespace app\admin\model;
 
 
-class App
+class App extends Model
 {
+    public function log()
+    {
+        //关联日志表
+        return $this->hasOne('AdminLog');
+    }
+
 
 }
