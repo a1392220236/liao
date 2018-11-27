@@ -87,7 +87,9 @@
                                 <label class="layui-form-label label" >应用key：</label>
                                 <div class="layui-input-inline">
                                     <input name="secret_key" id="secret_key"  required  lay-verify="required" value=""  class="layui-input input" autocomplete="off">
+
                                 </div>
+                                <button  type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal"    onclick="sckey()">生成随机key</button>
                             </div>
                         </div>
 
@@ -124,6 +126,7 @@
 
     <script src="__PUBLIC__/layui/layui.js"></script>
     <script src="__PUBLIC__/jquery/jquery.min.js"></script>
+    <script src="__PUBLIC__/jquery/md5.js"></script>
     <script>
         var message;
         layui.config({
@@ -143,6 +146,26 @@
     </script>
 
     <script>
+
+
+        function sckey(){
+
+            for(var j=0;j<10;j++){
+                var randStr = "";
+                for (var i = 0; i < 12; i++) {//此处的12为生成12位数字，可随即更改
+                    var randItem = Math.floor(Math.random() * 10);
+                    randStr += randItem;
+                }
+                 var timestamp = Date.parse(new Date());
+                var value="766"+timestamp;//此处的766是要求必须已766开头，如果不需要可以去掉并在for循环中填入你要的位数
+
+                value =hex_md5(value);
+                document.getElementById("secret_key").value=(value);
+            }
+
+
+            layer.msg('生成成功');
+        }
         layui.use(['layer', 'form'], function() {
             var layer = layui.layer,
                 $ = layui.jquery,
@@ -166,6 +189,13 @@
                     })
                     return false;
                 });
+
+                form.on('submit(sckey)', function(data) {
+
+                    layer.msg("生成成功");
+                    return false;
+                });
+
             });
         });
     </script>
