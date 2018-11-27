@@ -26,10 +26,10 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">管理员管理</li>
-        <li><a href="{:url('admin/admin/publish')}" class="a_menu">新增管理员</a></li>
+        <li class="layui-this">应用列表</li>
+        <li><a href="{:url('admin/admin/publish')}" class="a_menu">新增应用</a></li>
       </ul>
-    </div> 
+    </div>
     <form class="layui-form serch" action="{:url('admin/admin/index')}" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
@@ -38,10 +38,11 @@
           <div class="layui-input-inline">
             <div class="layui-inline">
                 <select name="admin_cate_id" lay-search="">
-                  <option value="">角色</option>
-                  {volist name="$info.cate" id="vo"}
-                  <option value="{$vo.id}">{$vo.name}</option>
-                  {/volist}
+                  <option value="">运营模式</option>
+                  <!--{volist name="$info.cate" id="vo"}-->
+                  <option value="1">收费</option>
+                  <option value="2">免费</option>
+                  <!--{/volist}-->
                 </select>
             </div>
           </div>
@@ -52,9 +53,9 @@
               </div>
             </div>
           </div>
-          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">立即提交</button>
+          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">搜索</button>
         </div>
-      </form> 
+      </form>
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
@@ -70,27 +71,26 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>头像</th>
-          <th>角色</th>
-          <th>用户名</th>
-          <th>昵称</th>
+          <th>应用名称</th>
+          <th>运营模式</th>
+          <th>版本号</th>
+          <th>运营状态</th>
+          <th>用户量</th>
           <th>创建时间</th>
-          <th>最后登录时间</th>
-          <th>最后登录IP</th>
           <th>操作</th>
-        </tr> 
+        </tr>
       </thead>
       <tbody>
-        {volist name="admin" id="vo"}
+        {volist name="info" id="vo"}
         <tr>
           <td>{$vo.id}</td>
-          <td><a href="{$vo.thumb|geturl}" class="tooltip"><img src="{$vo.thumb|geturl}" width="20" height="20"></a></td>
-          <td>{$vo.admincate.name}</td>
-          <td>{$vo.name}</td>
-          <td>{$vo.nickname}</td>
-          <td>{$vo.create_time}</td>
+          <!--<td><a href="{$vo.thumb|geturl}" class="tooltip"><img src="{$vo.thumb|geturl}" width="20" height="20"></a></td>-->
+          <td>{$vo.应用名称}</td>
+          <td>{$vo.运营模式}</td>
+          <td>{$vo.版本号}</td>
+          <td>{$vo.运营状态}</td>
+          <td>520</td>
           <td>{$vo.login_time|date="Y-m-d H:i:s",###}</td>
-          <td>{$vo.login_ip}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="{:url('admin/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
@@ -101,10 +101,10 @@
         {/volist}
       </tbody>
     </table>
-    <div style="padding:0 20px;">{$admin->render()}</div>
+    <div style="padding:0 20px;">{$info->render()}</div>
 
     {include file="public/foot"}
-    
+
     <script type="text/javascript">
 
     $('.delete').click(function(){

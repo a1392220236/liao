@@ -8,14 +8,9 @@
 
 namespace app\admin\model;
 
-
+use \think\Model;
 class App extends Model
 {
-    public function log()
-    {
-        //关联日志表
-        return $this->hasOne('AdminLog');
-    }
 
 
 }
