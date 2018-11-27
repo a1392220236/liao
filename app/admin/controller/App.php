@@ -16,19 +16,25 @@ use app\admin\model\AdminMenu;
 use app\admin\controller\Permissions;
 class App extends Permissions
 {
+
+    /**应用列表
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
         $model =new appModel();
-
         $post = $this->request->param();
-
-
         $info = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
         $this->assign('info',$info);
         $this->assign('info',$info);
         return $this->fetch();
+    }
 
 
+    public function edit()
+    {
+        return $this->fetch();
     }
 
 }

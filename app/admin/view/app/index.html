@@ -27,7 +27,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li class="layui-this">应用列表</li>
-        <li><a href="{:url('admin/admin/publish')}" class="a_menu">新增应用</a></li>
+        <li><a href="{:url('admin/app/edit')}" class="a_menu">新增应用</a></li>
       </ul>
     </div>
     <form class="layui-form serch" action="{:url('admin/admin/index')}" method="post">
@@ -39,10 +39,8 @@
             <div class="layui-inline">
                 <select name="admin_cate_id" lay-search="">
                   <option value="">运营模式</option>
-
                   <option value="1">收费</option>
                   <option value="2">免费</option>
-
                 </select>
             </div>
           </div>
