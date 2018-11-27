@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 26/11/2018 17:18:33
+ Date: 27/11/2018 17:39:55
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `tplay_admin`  (
 -- ----------------------------
 -- Records of tplay_admin
 -- ----------------------------
-INSERT INTO `tplay_admin` VALUES (1, 'Tplay1', 'admin', '31c64b511d1e90fcda8519941c1bd660', 3, 1510885948, 1543025389, 1543217002, '127.0.0.1', 1);
+INSERT INTO `tplay_admin` VALUES (1, 'Tplay1', 'admin', '31c64b511d1e90fcda8519941c1bd660', 3, 1510885948, 1543025389, 1543284474, '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for tplay_admin_cate
@@ -64,7 +64,7 @@ CREATE TABLE `tplay_admin_cate`  (
 -- ----------------------------
 -- Records of tplay_admin_cate
 -- ----------------------------
-INSERT INTO `tplay_admin_cate` VALUES (1, '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,25,26,28,29,34,35,37,38,39,40,42,43,44,45,47,48', 0, 1517022009, '超级管理员，拥有最高权限！');
+INSERT INTO `tplay_admin_cate` VALUES (1, '超级管理员', '4,5,11,13,14,16,17,19,20,21,6,7,8,25,26,28,29,34,35,37,38,39,40,42,43,44,45,47,48,52', 0, 1543296509, '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for tplay_admin_log
@@ -81,7 +81,7 @@ CREATE TABLE `tplay_admin_log`  (
   INDEX `id`(`id`) USING BTREE,
   INDEX `admin_id`(`admin_id`) USING BTREE,
   INDEX `create_time`(`create_time`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tplay_admin_log
@@ -103,6 +103,9 @@ INSERT INTO `tplay_admin_log` VALUES (14, 4, 1, '127.0.0.1', '6', 1543026317);
 INSERT INTO `tplay_admin_log` VALUES (15, 4, 1, '127.0.0.1', '1', 1543026363);
 INSERT INTO `tplay_admin_log` VALUES (16, 4, 1, '127.0.0.1', '31', 1543026446);
 INSERT INTO `tplay_admin_log` VALUES (17, 50, 1, '127.0.0.1', '', 1543217002);
+INSERT INTO `tplay_admin_log` VALUES (18, 50, 1, '127.0.0.1', '', 1543284474);
+INSERT INTO `tplay_admin_log` VALUES (19, 4, 1, '127.0.0.1', '52', 1543296481);
+INSERT INTO `tplay_admin_log` VALUES (20, 28, 1, '127.0.0.1', '1', 1543296509);
 
 -- ----------------------------
 -- Table structure for tplay_admin_menu
@@ -131,7 +134,7 @@ CREATE TABLE `tplay_admin_menu`  (
   INDEX `function`(`function`) USING BTREE,
   INDEX `is_display`(`is_display`) USING BTREE,
   INDEX `type`(`type`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统菜单表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统菜单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tplay_admin_menu
@@ -187,6 +190,29 @@ INSERT INTO `tplay_admin_menu` VALUES (47, '留言处理', 'admin', 'tomessages'
 INSERT INTO `tplay_admin_menu` VALUES (48, '留言删除', 'admin', 'tomessages', 'delete', '', '留言删除。', 2, 1, 46, 1516953648, 1516953648, '', 0, 0);
 INSERT INTO `tplay_admin_menu` VALUES (49, '图片上传', 'admin', 'common', 'upload', '', '图片上传。', 2, 2, 0, 1516954491, 1516954491, '', 0, 0);
 INSERT INTO `tplay_admin_menu` VALUES (50, '管理员登录', 'admin', 'common', 'login', '', '管理员登录。', 2, 2, 0, 1516954517, 1516954517, '', 0, 0);
+INSERT INTO `tplay_admin_menu` VALUES (52, '应用列表', 'admin', 'app', 'index', '', '应用列表', 1, 1, 31, 1543296481, 1543296481, 'fa-television', 0, 0);
+
+-- ----------------------------
+-- Table structure for tplay_app
+-- ----------------------------
+DROP TABLE IF EXISTS `tplay_app`;
+CREATE TABLE `tplay_app`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用名称',
+  `operation` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '运营模式,1=收费,2=免费,3=试用',
+  `notice` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '应用公告',
+  `version_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '版本号',
+  `update_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新地址',
+  `secret_key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用秘钥',
+  `state` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '运营状态,1=正常,2=维护,3=停止运营',
+  `create_time` int(11) NULL DEFAULT NULL COMMENT 'APP创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tplay_app
+-- ----------------------------
+INSERT INTO `tplay_app` VALUES (1, '测试应用', '1', '大家好', '1', 'www.baidu.com', 'com', '1', 1543284474);
 
 -- ----------------------------
 -- Table structure for tplay_article
