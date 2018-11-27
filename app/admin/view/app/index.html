@@ -39,10 +39,10 @@
             <div class="layui-inline">
                 <select name="admin_cate_id" lay-search="">
                   <option value="">运营模式</option>
-                  <!--{volist name="$info.cate" id="vo"}-->
+
                   <option value="1">收费</option>
                   <option value="2">免费</option>
-                  <!--{/volist}-->
+
                 </select>
             </div>
           </div>
@@ -56,24 +56,14 @@
           <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">搜索</button>
         </div>
       </form>
-    <table class="layui-table" lay-size="sm">
-      <colgroup>
-        <col width="50">
-        <col width="80">
-        <col width="100">
-        <col width="150">
-        <col width="150">
-        <col width="200">
-        <col width="200">
-        <col width="200">
-        <col width="100">
-      </colgroup>
-      <thead>
-        <tr>
+    <table class="layui-table" lay-size="sm"  align="center">
+
+      <thead >
+        <tr >
           <th>ID</th>
-          <th>应用名称</th>
-          <th>运营模式</th>
+          <th align="center">应用名称</th>
           <th>版本号</th>
+          <th>运营模式</th>
           <th>运营状态</th>
           <th>用户量</th>
           <th>创建时间</th>
@@ -84,13 +74,15 @@
         {volist name="info" id="vo"}
         <tr>
           <td>{$vo.id}</td>
-          <!--<td><a href="{$vo.thumb|geturl}" class="tooltip"><img src="{$vo.thumb|geturl}" width="20" height="20"></a></td>-->
-          <td>{$vo.应用名称}</td>
-          <td>{$vo.运营模式}</td>
-          <td>{$vo.版本号}</td>
-          <td>{$vo.运营状态}</td>
+          <td >{$vo.app_name}</td>
+          <td>{$vo.version_number}</td>
+          <td>{if condition="$vo.operation eq 1"}<span class="layui-badge layui-bg-orange">收费</span>{elseif condition="$vo.operation eq 2"}<span class="layui-badge">免费</span>{else /}<span class="layui-badge layui-bg-gray">试用</span>{/if}</td>
+
+
+          <td>{if condition="$vo.state eq 1"}<span class="layui-badge layui-bg-green">正常</span>{elseif condition="$vo.state eq 2"}<span class="layui-badge">维护</span>{else /}<span class="layui-badge layui-bg-gray">停止运营</span>{/if}</td>
           <td>520</td>
-          <td>{$vo.login_time|date="Y-m-d H:i:s",###}</td>
+          <td>{$vo.create_time}</td>
+
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="{:url('admin/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
